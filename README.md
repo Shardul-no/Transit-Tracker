@@ -1,66 +1,35 @@
-# Transit Tracker
+# Transit Pulse
 
-A React Native mobile app that tracks user movement and transportation mode entirely offline, with no account or sign-in required.
+Transit Pulse is an Android-only Flutter app for recording trips offline on-device.
 
-## Features
+## What it does
 
-- ✅ **Offline-First**: All data stored locally in SQLite
-- 🗺️ **Free Maps**: Uses OpenStreetMap tiles
-- 🚶 **Mode Detection**: Automatically detects walking, driving, or train
-- 📊 **Session Summaries**: View detailed trip statistics
-- 🔒 **Privacy**: No authentication, no cloud sync, all data stays on device
-- 🔋 **Battery Optimized**: Adaptive location updates
+- Starts and stops GPS trip recording
+- Detects walking, driving, and train based on speed
+- Draws the route on an OpenStreetMap-backed map
+- Stores sessions locally in SQLite
+- Shows trip history and trip summaries
+- Exports trips as JSON or GPX
 
-## Tech Stack
+## Tech stack
 
-- React Native (TypeScript)
-- react-native-maps (OpenStreetMap)
-- react-native-geolocation-service
-- react-native-sqlite-storage
-- react-native-permissions
-- Zustand (state management)
-- NativeWind (Tailwind CSS)
+- Flutter
+- geolocator
+- flutter_map
+- sqflite
+- google_fonts
+- share_plus
 
-## Installation
+## Run it
 
 ```bash
-# Install dependencies
-npm install
-
-# iOS only - install pods
-cd ios && pod install && cd ..
-
-# Run on Android
-npm run android
-
-# Run on iOS
-npm run ios
+flutter pub get
+flutter run
 ```
 
-## Permissions
+## Notes
 
-The app requires location permissions to function:
-- **Android**: Location permissions (foreground and background)
-- **iOS**: Location permissions (when in use and always)
+- Android only
+- Background tracking uses a foreground service notification on Android
+- Location and notification permissions are required for best results
 
-## Transportation Mode Detection
-
-Speed-based classification:
-- **Walking**: < 3 m/s (~10.8 km/h)
-- **Driving**: 3-22 m/s (~10.8-79.2 km/h)
-- **Train**: > 22 m/s (~79.2 km/h)
-
-## Data Storage
-
-All session data is stored locally in SQLite:
-- GPS points (timestamp, latitude, longitude, speed, mode)
-- Session metadata (start time, end time, total distance, etc.)
-- No cloud backup or sync
-
-## Export (Stretch Goal)
-
-Export trips as GPX or JSON files for backup or analysis.
-
-## License
-
-MIT
